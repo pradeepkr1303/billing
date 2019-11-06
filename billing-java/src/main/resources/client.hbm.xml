@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.billing.entity.Client" table="client">
+    
+        <id name="clientId" type="int" column="ClientId">
+            <generator class="increment"/>
+        </id>
+        
+        <property name="clientName">
+            <column name="ClientName"/>
+        </property>
+        
+        <property name="clientAddress">
+            <column name="ClientAddress"/>
+        </property>
+        
+        <property name="clientGstin">
+            <column name="ClientGSTIN"/>
+        </property>
+        
+        <property name="clientPhoneNumber">
+        	<column name="ClientPhoneNumber"/>
+        </property>
+        
+        <property name="clientCreatedDate" type="date">
+        	<column name="ClientCreatedDate"/>
+        </property>
+        
+        <property name="clientUpdatedDate" type="date">
+        	<column name="ClientUpdatedDate"/>
+        </property>
+        
+    </class>
+</hibernate-mapping>

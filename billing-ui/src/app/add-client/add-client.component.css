@@ -1,0 +1,16 @@
+.client_header {
+    border: 5px;
+    margin-top: 0.5%;
+    text-align: center;
+}
+
+.row_additional {
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+}
+
+.topic {
+    text-align: center;
+    margin-top:1%;
+    margin-bottom: 3%;
+}

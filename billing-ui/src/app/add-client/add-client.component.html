@@ -1,0 +1,53 @@
+<div>
+    <div class="topic">
+        <h3>New Client</h3>
+    </div>
+    <div class="Client_header">
+        <div class="row">
+            <div class="col-md">
+                <div class="row row_additional form-group">
+                    <label for="client_name" class="col-md-2 col-form-label"><b>Name :</b></label>
+                    <input class="col-md form-control" [(ngModel)]="clientName" type="text" id="client_name">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md">
+                <div class="row row_additional form-group">
+                    <label for="client_address" class="col-md-2 col-form-label"><b>Address :</b></label>
+                    <input class="col-md form-control" [(ngModel)]="clientAddress" type="text" id="client_address">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md">
+                <div class="row row_additional form-group">
+                    <label for="gstin" class="col-md-2 col-form-label"><b>GSTIN :</b></label>
+                    <input class="col-md form-control" [(ngModel)]="gstin" type="text" id="gstin">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md">
+                <div class="row row_additional form-group">
+                    <label for="phone_number" class="col-md-2 col-form-label"><b>Phone number :</b></label>
+                    <input class="col-md form-control" [(ngModel)]="phoneNumber" type="number" id="phone_number">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <button class="btn btn-secondary col-md">Add</button>
+        <div class="col-md-4"></div>
+    </div>
+
+    {{clientName}}
+    {{clientAddress}}
+    {{gstin}}
+    {{phoneNumber}}
+</div>
