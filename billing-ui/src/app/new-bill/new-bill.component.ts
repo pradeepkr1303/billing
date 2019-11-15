@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { OrderItem } from './../order-item';
+import { OrderItem } from '../entity/order-item';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal'
 
 
