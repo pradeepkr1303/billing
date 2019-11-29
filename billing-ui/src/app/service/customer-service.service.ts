@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError, from } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import {Customer} from './../entity/customer'
 
@@ -23,5 +23,9 @@ export class CustomerServiceService {
 
   saveCustomer(data): Observable<Customer> {
     return this.http.post<Customer>(this.baseurl + '/backend' + '/customer' + '/saveCustomer', JSON.stringify(data), this.httpOptions);
-  }  
+  }
+
+  getAllCustomers(): Observable<Customer> {
+    return this.http.get<Customer>(this.baseurl + '/backend' + '/customer' + '/allCustomers');
+  }
 }

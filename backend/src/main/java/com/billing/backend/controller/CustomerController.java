@@ -20,62 +20,39 @@ import com.billing.backend.service.CustomerService;
 
 @RestController
 @RequestMapping("/customer")
+@CrossOrigin
 public class CustomerController {
-	
-	
-	
+
 	@Autowired
 	private CustomerService customerService;
 	
 	private ResponseDto responseDto = new ResponseDto();
 
 	@PostMapping("/saveCustomer")
-	@CrossOrigin(origins = "http://localhost:4200")
 	public final ResponseDto saveCustomer(@RequestBody Customer customer) {
-		
-//		System.out.println("Inside saveCustomer() controller");
 		
 		Customer customerSaved = customerService.saveCustomer(customer);
 		
-//		System.out.println("After customer saved");
-		
 		try {
-//			System.out.println("inside try");
 			if (customerSaved != null) {
-//				System.out.println("inside if");
 				responseDto.setResponseCode(HttpStatus.OK);
-//				System.out.println("code done");
 				responseDto.setResponseMessage("Customer " + customerSaved.getName() + " saved Successfully");
-//				System.out.println("message done");
 				responseDto.setData(customerSaved);
-//				System.out.println("data done");
 			} else {
-//				System.out.println("inside else");
 				responseDto.setResponseCode(HttpStatus.NO_CONTENT);
-//				System.out.println("code done");
 				responseDto.setResponseMessage("Customer " + customer.getName() + "not saved Successfully");
-//				System.out.println("message done");
 				responseDto.setData(customerSaved);
-//				System.out.println("data done");
 			}
 		} catch (Exception e) {
-//			System.out.println("inside catch");
 			responseDto.setResponseCode(HttpStatus.INTERNAL_SERVER_ERROR);
-//			System.out.println("code done");
 			responseDto.setResponseMessage("Internal server error");
-//			System.out.println("message done");
 			responseDto.setData(e);
-//			System.out.println("data done");
 		}
-//		System.out.println("outside try");
 		return responseDto;
 	}
 	
 	@GetMapping("/allCustomers")
-	@CrossOrigin(origins = "http://localhost:4200")
 	public final ResponseDto getAllCustomer() {
-		
-		System.out.println("Inside getAllCustomer() controller");
 		
 		List<Customer> customers = customerService.getAllCustomer();
 		

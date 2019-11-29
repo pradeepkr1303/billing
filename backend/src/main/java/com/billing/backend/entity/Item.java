@@ -3,20 +3,21 @@ package com.billing.backend.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
-public class Order {
+@IdClass(ItemId.class)
+public class Item {
 	@Id
-	@GeneratedValue
 	private Long id;
 	
-	private Long billId;
-	
+	@Id
+	private Long billNo;
+
 	private String particular;
 	
 	private String hsnCode;
@@ -27,8 +28,6 @@ public class Order {
 	
 	private Double rate;
 	
-	private String rateUnit;
-	
 	private Double price;
 	
 	@CreatedDate
@@ -37,22 +36,21 @@ public class Order {
 	@LastModifiedDate
 	private Date updatedDate;
 
-	public Order() {
+	public Item() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Order(Long id, Long billId, String particular, String hsnCode, Double quantity, String quantityUnit,
-			Double rate, String rateUnit, Double price, Date createdDate, Date updatedDate) {
+	public Item(Long id, Long billNo, String particular, String hsnCode, Double quantity, String quantityUnit,
+			Double rate, Double price, Date createdDate, Date updatedDate) {
 		super();
 		this.id = id;
-		this.billId = billId;
+		this.billNo = billNo;
 		this.particular = particular;
 		this.hsnCode = hsnCode;
 		this.quantity = quantity;
 		this.quantityUnit = quantityUnit;
 		this.rate = rate;
-		this.rateUnit = rateUnit;
 		this.price = price;
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
@@ -60,9 +58,9 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", billId=" + billId + ", particular=" + particular + ", hsnCode=" + hsnCode
-				+ ", quantity=" + quantity + ", quantityUnit=" + quantityUnit + ", rate=" + rate + ", rateUnit="
-				+ rateUnit + ", price=" + price + ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + "]";
+		return "Item [id=" + id + ", billNo=" + billNo + ", particular=" + particular + ", hsnCode=" + hsnCode
+				+ ", quantity=" + quantity + ", quantityUnit=" + quantityUnit + ", rate=" + rate + ", price=" + price
+				+ ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + "]";
 	}
 
 	public Long getId() {
@@ -73,12 +71,12 @@ public class Order {
 		this.id = id;
 	}
 
-	public Long getBillId() {
-		return billId;
+	public Long getBillNo() {
+		return billNo;
 	}
 
-	public void setBillId(Long billId) {
-		this.billId = billId;
+	public void setBillNo(Long billNo) {
+		this.billNo = billNo;
 	}
 
 	public String getParticular() {
@@ -121,14 +119,6 @@ public class Order {
 		this.rate = rate;
 	}
 
-	public String getRateUnit() {
-		return rateUnit;
-	}
-
-	public void setRateUnit(String rateUnit) {
-		this.rateUnit = rateUnit;
-	}
-
 	public Double getPrice() {
 		return price;
 	}
@@ -152,5 +142,5 @@ public class Order {
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-
+	
 }

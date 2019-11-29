@@ -4,19 +4,25 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NewBillComponent } from './new-bill/new-bill.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { AddClientComponent } from './add-client/add-client.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateCustomerComponent } from './components/create-customer/create-customer.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { CreateBillComponent } from './components/create-bill/create-bill.component';
+import { BsDropdownModule } from 'ngx-bootstrap';
+import { AccordionModule } from 'ngx-bootstrap';
+import { TypeaheadModule } from 'ngx-bootstrap';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewBillComponent,
-    AddClientComponent,
-    NavBarComponent
+    NavBarComponent,
+    CreateCustomerComponent,
+    CreateBillComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +30,11 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ModalModule.forRoot(),
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    BsDatepickerModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    AccordionModule.forRoot(),
+    TypeaheadModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

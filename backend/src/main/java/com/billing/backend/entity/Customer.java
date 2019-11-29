@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -13,7 +14,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 public class Customer {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String name;
@@ -32,8 +33,10 @@ public class Customer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(String name, String address, String gstin, String phoneNumber, Date createdDate, Date updatedDate) {
+	public Customer(Long id, String name, String address, String gstin, String phoneNumber, Date createdDate,
+			Date updatedDate) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.gstin = gstin;

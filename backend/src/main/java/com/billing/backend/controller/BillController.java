@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import com.billing.backend.service.BillService;
 
 @RestController
 @RequestMapping("/bill")
+@CrossOrigin
 public class BillController {
 	
 	@Autowired
@@ -25,7 +27,7 @@ public class BillController {
 	@Autowired
 	private BillService billService;
 	
-	@GetMapping
+	@GetMapping("/getAllBills")
 	public ResponseDto getallBills() {
 		List<Bill> bills = new ArrayList<>();
 		bills = billService.getAllBills();
@@ -49,7 +51,7 @@ public class BillController {
 		return responseDto;
 	}
 	
-	@PostMapping
+	@PostMapping("/saveBill")
 	public ResponseDto saveBill(@RequestBody Bill bill) {
 		Bill billSaved = new Bill();
 		billSaved = billService.saveBill(bill);
@@ -63,6 +65,30 @@ public class BillController {
 				responseDto.setResponseCode(HttpStatus.NO_CONTENT);
 				responseDto.setResponseMessage("Error in saving bill");
 				responseDto.setData(bill);
+			}
+		} catch (Exception e) {
+			responseDto.setResponseCode(HttpStatus.INTERNAL_SERVER_ERROR);
+			responseDto.setResponseMessage("Internal Server error");
+			responseDto.setData(e);
+		}
+		
+		return responseDto;
+	}
+	
+	@GetMapping("getBillCount")
+	public ResponseDto getBillCount() {
+		
+		Long billCount = billService.getBillCount();
+		
+		try {
+			if(billCount != null) {
+				responseDto.setResponseCode(HttpStatus.OK);
+				responseDto.setResponseMessage("Total Bills: " + billCount);
+				responseDto.setData(billCount);
+			} else {
+				responseDto.setResponseCode(HttpStatus.NO_CONTENT);
+				responseDto.setResponseMessage("Error in getting bill count");
+				responseDto.setData(billCount);
 			}
 		} catch (Exception e) {
 			responseDto.setResponseCode(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -13,7 +13,7 @@ import com.billing.backend.entity.Customer;
 public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
-	CustomerDao customerDao;
+	private CustomerDao customerDao;
 
 	public Customer saveCustomer(Customer customer) {
 		

@@ -1,0 +1,160 @@
+<div>
+    <div class="form-row">
+        <div class="col-md-3 mb-3">
+            <label>Bill no:</label>
+            <input type="text" class="form-control" value={{billNo}} aria-describedby="billNoHelp" readonly>
+            <small id="billNoHelp" class="form-text text-muted">
+                *Bill number may change while saving
+            </small>
+        </div>
+        <div class="col-md mb-3">
+            <label for="customer">Customer:</label>
+            <!-- <input type="text" class="form-control" id="customer" [(ngModel)]="to" placeholder="Enter customer name"
+                required> -->
+            <input [(ngModel)]="customer" [typeahead]="customers" typeaheadOptionField="name"
+                (typeaheadOnSelect)="onSelect($event)" class="form-control" id="customer"
+                placeholder="Enter customer name">
+            <small id="tinNo" class="form-text text-muted">
+                <p>GSTIN no. : {{customer.gstin}}</p>
+            </small>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="date">Date:</label>
+            <input type="text" class="form-control" id="date" [(ngModel)]="date" bsDatepicker required>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Items -->
+        <div class="col-md-8">
+            <div *ngIf="isItemsEmpty">
+                <div *ngIf="showAddItemButton" class="text-center">
+                    <p>Click Add Item button below to add a new item for start billing.</p>
+                    <button type="button" class="btn btn-outline-secondary" (click)="openNewItemModal(newItem)">Add
+                        Item</button>
+                </div>
+            </div>
+            <div *ngIf="!isItemsEmpty">
+                <accordion *ngFor="let item of items" [isAnimated]="true">
+                    <accordion-group>
+                        <button class="btn btn-link" accordion-heading type="button">
+                            <div class="pull-left float-left">{{item.sNo}}) {{item.particular}} ₹{{item.total}}.</div>
+                        </button>
+                        <span>
+                            <div class="form-row">
+                                <div class="col-md mb-3">
+                                    <label>Paricular</label>
+                                    <input type="text" class="form-control" value={{item.particular}} readonly>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-2 mb-3">
+                                    <label>HSN code</label>
+                                    <input type="text" class="form-control" value={{item.hsnCode}} readonly>
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <label>Quantity</label>
+                                    <input type="text" class="form-control" value={{item.quantity}} readonly>
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <label>Unit</label>
+                                    <input type="text" class="form-control" value={{item.qUnit}} readonly>
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <label>Rate</label>
+                                    <input type="text" class="form-control" value={{item.rate}} readonly>
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <label>Total:</label>
+                                    <input type="text" class="form-control" value={{item.total}} readonly>
+                                </div>
+                            </div>
+                        </span>
+                    </accordion-group>
+                </accordion>
+                <div *ngIf="showAddItemButton" class="text-center">
+                    <button class="btn btn-outline-secondary" (click)="openNewItemModal(newItem)">Add
+                        Item</button>
+                </div>
+            </div>
+
+            <!-- Add Item modal -->
+            <ng-template #newItem>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title pull-left">New Item</h4>
+                        <button type="button" class="close pull-right" (click)="modalRef.hide()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body container">
+                        <div class="row form-group">
+                            <label for="detail" class="col-md-3">Particular</label>
+                            <input type="text" class="col-md form-control" id="detail" [(ngModel)]="particular"
+                                required>
+                            <div class="col-md-1">*</div>
+                        </div>
+                        <div class="row form-group">
+                            <label for="hsn_code" class="col-md-3">HSN Code</label>
+                            <input type="text" class="col-md form-control" id="hsn_code" [(ngModel)]="hsnCode" required>
+                            <div class="col-md-1">*</div>
+                        </div>
+                        <div class="row form-group">
+                            <label for="quantity" class="col-md-3">Quantity</label>
+                            <input type="number" class="col-md form-control" id="quantity" [(ngModel)]="quantity"
+                                required>
+                            <!-- Dropdown quantity unit -->
+                            <div class="col-3 btn-group">
+                                <select [(ngModel)]="qUnit" class="form-control" required>
+                                    <option value="meter" selected>Meter</option>
+                                    <option value="kilogram">Kilogram</option>
+                                    <option value="sample">Sample</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1">*</div>
+                        </div>
+                        <div class="row form-group">
+                            <label for="rate" class="col-md-3">Rate</label>
+                            <input type="number" class="col-md form-control" id="rate" [(ngModel)]="rate" required>
+                            <div class="col-md-1">*</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" (click)="addItem()">Add</button>
+                        <button class="btn btn-danger" (click)="modalRef.hide()">Close</button>
+                    </div>
+                </div>
+            </ng-template>
+            <!-- Add item modal -->
+        </div>
+
+        <!-- Total amount -->
+        <div class="com-md-4">
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Taxable:</label>
+                <input type="text" class="col-sm form-control-plaintext" value="{{taxableAmount}}" readonly>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">CGST:</label>
+                <input type="text" class="col-sm form-control-plaintext" value="{{cgst}}" readonly>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">SGST:</label>
+                <input type="text" class="col-sm form-control-plaintext" value="{{sgst}}" readonly>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Round off:</label>
+                <input type="text" class="col-sm form-control-plaintext" value="{{roundOff}}" readonly>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Grand total:</label>
+                <input type="text" class="col-sm form-control-plaintext" value="{{grandTotal}}" readonly>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Amount in words:</label>
+                <input type="text" class="col-sm form-control-plaintext" value="{{amountInWords}}" readonly>
+            </div>
+        </div>
+    </div>
+</div>

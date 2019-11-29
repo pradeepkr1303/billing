@@ -7,5 +7,6 @@ import com.billing.backend.entity.Bill;
 public interface BillService {
 	public Bill saveBill(Bill bill);
 	public List<Bill> getAllBills();
+	public Long getBillCount();
 
 }

@@ -3,9 +3,9 @@ package com.billing.backend.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.billing.backend.entity.Order;
+import com.billing.backend.entity.Item;
 
 @Repository
-public interface OrderRepository extends CrudRepository<Order, Long>{
+public interface ItemRepository extends CrudRepository<Item, Long>{
 
 }

@@ -26,6 +26,11 @@ public class BillDaoImpl implements BillDao {
 		billRepository.findAll().forEach(bills::add);
 		return bills;
 	}
-	
 
+	@Override
+	public Long getBillCount() {
+		return billRepository.count();
+	}
+
+	
 }

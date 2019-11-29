@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NewBillComponent } from './new-bill/new-bill.component';
-import { AddClientComponent } from './add-client/add-client.component';
+import { CreateBillComponent } from './components/create-bill/create-bill.component';
+import { CreateCustomerComponent } from './components/create-customer/create-customer.component'
+import { HomeComponent } from './components/home/home.component';
 
 
 const routes: Routes = [
-  {path: "new-bill", component: NewBillComponent},
-  {path: "add-client", component:AddClientComponent}
+  {path:"", redirectTo:"home", pathMatch:"full"},
+  {path:"home", component:HomeComponent},
+  {path: "newBill", component: CreateBillComponent},
+  {path: "createCustomer", component:CreateCustomerComponent}
 ];
 
 @NgModule({

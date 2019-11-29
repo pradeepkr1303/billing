@@ -1,10 +1,10 @@
 export class Customer {
-    name: Text;
-    address: Text;
-    gstin: Text;
-    phoneNumber: Text;
+    name: String;
+    address: String;
+    gstin: String;
+    phoneNumber: String;
 
-    constructor(name: Text, address: Text, gstin: Text, phoneNumber: Text) {
+    constructor(name: String, address: String, gstin: String, phoneNumber: String) {
         this.name = name;
         this.address = address;
         this.gstin = gstin;
