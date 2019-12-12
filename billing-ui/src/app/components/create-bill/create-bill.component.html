@@ -15,7 +15,7 @@
                 (typeaheadOnSelect)="onSelect($event)" class="form-control" id="customer"
                 placeholder="Enter customer name">
             <small id="tinNo" class="form-text text-muted">
-                <p>GSTIN no. : {{customer.gstin}}</p>
+                <!-- <p>GSTIN no. : {{customer.gstin}}</p> -->
             </small>
         </div>
         <div class="col-md-4 mb-3">
@@ -153,7 +153,7 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-6 col-form-label">Amount in words:</label>
-                <input type="text" class="col-sm form-control-plaintext" value="{{amountInWords}}" readonly>
+                <p class="col-sm form-control-plaintext">{{amountInWords}}</p>
             </div>
         </div>
     </div>

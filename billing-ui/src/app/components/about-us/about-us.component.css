@@ -1,0 +1,16 @@
+.user-photo {
+    background-color: #123456;
+    text-align: center;
+    padding: 20px 0 20px;
+    border-radius: 20%;
+}
+
+.user-photo img {
+    width: auto;
+    height: 250px;
+    border-radius: 50%;
+}
+
+.user-photo img:hover {
+    transform: scale(1.1);
+}

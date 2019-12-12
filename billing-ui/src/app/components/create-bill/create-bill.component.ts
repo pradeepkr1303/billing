@@ -16,41 +16,41 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
 export class CreateBillComponent implements OnInit {
 
   //Variable for using number-to-words package
-  // converter: any = require("number-to-words");
+  converter: any = require("number-to-words");
 
   billNo: Text;
   customer: Customer;
   date: Date = new Date();
 
-  isItemsEmpty: boolean = false;
+  isItemsEmpty: boolean = true;
   items: Item[] = [
-    {
-      sNo: 1,
-      particular: "Royal blue twill tape 10mm",
-      hsnCode: "998821",
-      quantity: 10,
-      qUnit: "Kilogram",
-      rate: 178,
-      total: 1780
-    },
-    {
-      sNo: 2,
-      particular: "Grey melange twill tape 10mm",
-      hsnCode: "998821",
-      quantity: 10,
-      qUnit: "Kilogram",
-      rate: 178,
-      total: 1780
-    },
-    {
-      sNo: 3,
-      particular: "Royal blue twill tape 10mm",
-      hsnCode: "998821",
-      quantity: 10,
-      qUnit: "Kilogram",
-      rate: 178,
-      total: 1780
-    }
+    // {
+    //   sNo: 1,
+    //   particular: "Royal blue twill tape 10mm",
+    //   hsnCode: "998821",
+    //   quantity: 10,
+    //   qUnit: "Kilogram",
+    //   rate: 178,
+    //   total: 1780
+    // },
+    // {
+    //   sNo: 2,
+    //   particular: "Grey melange twill tape 10mm",
+    //   hsnCode: "998821",
+    //   quantity: 10,
+    //   qUnit: "Kilogram",
+    //   rate: 178,
+    //   total: 1780
+    // },
+    // {
+    //   sNo: 3,
+    //   particular: "Royal blue twill tape 10mm",
+    //   hsnCode: "998821",
+    //   quantity: 10,
+    //   qUnit: "Kilogram",
+    //   rate: 178,
+    //   total: 1780
+    // }
   ];
   temp: Item;
   showAddItemButton: boolean = true;
@@ -98,7 +98,7 @@ export class CreateBillComponent implements OnInit {
     this.sgst = +(this.taxableAmount * 2.5 / 100).toFixed(2);
     this.roundOff = +(Math.round(this.total + this.cgst + this.sgst) - (this.total + this.cgst + this.sgst)).toFixed(2);
     this.grandTotal = Math.round(this.taxableAmount + this.cgst + this.sgst + this.roundOff);
-    // this.amountInWords = this.converter.toWords(this.grandTotal).concat(' rupees only');
+    this.amountInWords = this.converter.toWords(this.grandTotal).concat(' rupees only');
   }
 
   openNewItemModal(newItem: TemplateRef<any>) {

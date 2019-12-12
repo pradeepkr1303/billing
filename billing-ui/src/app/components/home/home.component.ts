@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { listFiles } from 'list-files-in-dir';
+
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,6 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }
